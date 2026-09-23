@@ -1,0 +1,2162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aleezah Jamil — AI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      width: 100%;
+      background-color: #0a0a0c;
+      overflow-x: hidden;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      color: #ffffff;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      width: 100%;
+      background-color: #0a0a0c;
+      overflow-x: hidden;
+    }
+
+    /* Fixed Canvas Background Layer */
+    #animation-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      display: block;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Subtle scrim overlay to ensure readable typography over portrait */
+    .scrim-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: radial-gradient(circle at 50% 50%, rgba(10, 10, 12, 0.15) 0%, rgba(10, 10, 12, 0.65) 100%),
+                  linear-gradient(to bottom, rgba(10, 10, 12, 0.5) 0%, rgba(10, 10, 12, 0.25) 50%, rgba(10, 10, 12, 0.8) 100%);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* --------------------------------------------------
+       1. HERO SECTION (Screen 1)
+    -------------------------------------------------- */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      min-height: 100vh;
+      height: 100vh;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.2rem 4rem;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .brand-name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .brand-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.22rem 0.55rem;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #ffffff;
+    }
+
+    .btn-get-in-touch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #ffffff;
+      color: #0a0a0c;
+      padding: 0.42rem 0.5rem 0.42rem 1.3rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-get-in-touch:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-get-in-touch .arrow-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #ff4d2d;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: transform 0.25s ease;
+    }
+
+    .btn-get-in-touch:hover .arrow-circle {
+      transform: translateX(2px);
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-left {
+      max-width: 520px;
+    }
+
+    .intro-accent {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ff4d2d;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-headline {
+      font-size: clamp(3.2rem, 5.5vw, 5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .sub-role {
+      font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 0.3rem;
+    }
+
+    .tech-stack-line {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 1.8rem;
+      letter-spacing: -0.01em;
+    }
+
+    .cta-button-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #ff4d2d;
+      color: #ffffff;
+      padding: 0.8rem 1.6rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border: 1px solid #ff4d2d;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(255, 77, 45, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: #ff3814;
+      border-color: #ff3814;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(255, 77, 45, 0.5);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      padding: 0.8rem 1.6rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .hero-right {
+      max-width: 380px;
+      text-align: right;
+    }
+
+    .statement-title {
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .statement-desc {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .hero-bottom {
+      width: 100%;
+    }
+
+    .divider-line {
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.15);
+      margin-bottom: 1.4rem;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      width: 100%;
+    }
+
+    .category-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .cat-num {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #ff4d2d;
+      margin-bottom: 0.15rem;
+    }
+
+    .cat-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .cat-subtitle {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.58);
+    }
+
+    /* --------------------------------------------------
+       2. ABOUT ME SECTION (Screen 2)
+    -------------------------------------------------- */
+    .about-section {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      min-height: 100vh;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      padding: 6rem 4rem;
+    }
+
+    .about-container {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      width: 100%;
+      max-width: 1350px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .about-main-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section-tag {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #ff4d2d;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .about-headline {
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 2rem;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .about-paragraphs {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .para-primary {
+      font-size: 1.1rem;
+      line-height: 1.65;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .para-secondary {
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .key-facts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      padding-top: 2rem;
+    }
+
+    .fact-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .fact-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .fact-lbl {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+    }
+
+    .about-card-wrapper {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .focus-card {
+      width: 100%;
+      max-width: 440px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      transition: border-color 0.3s ease;
+    }
+
+    .focus-card:hover {
+      border-color: rgba(255, 77, 45, 0.35);
+    }
+
+    .focus-card-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #ff4d2d;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .focus-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .focus-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+    }
+
+    .focus-num {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ff4d2d;
+      line-height: 1.2;
+    }
+
+    .focus-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .focus-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .focus-sub {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.58);
+    }
+
+    /* --------------------------------------------------
+       3. SKILLS SECTION (Screen 3)
+    -------------------------------------------------- */
+    .skills-section {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      min-height: 100vh;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      padding: 6rem 4rem;
+    }
+
+    .skills-container {
+      width: 100%;
+      max-width: 1350px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .skills-header {
+      max-width: 650px;
+    }
+
+    .skills-headline {
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .skills-subtext {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      width: 100%;
+    }
+
+    .skill-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .skill-card:hover {
+      border-color: rgba(255, 77, 45, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-num {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #ff4d2d;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card-desc {
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .pills-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .pill {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.4rem 0.85rem;
+      border-radius: 9999px;
+      transition: all 0.2s ease;
+    }
+
+    .pill:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .pill-highlight {
+      background: rgba(255, 77, 45, 0.12);
+      border-color: rgba(255, 77, 45, 0.38);
+      color: #ffffff;
+    }
+
+    .pill-highlight:hover {
+      background: rgba(255, 77, 45, 0.22);
+      border-color: rgba(255, 77, 45, 0.55);
+    }
+
+    .tools-wrapper {
+      margin-top: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .tools-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .tools-pills .pill {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.09);
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* --------------------------------------------------
+       4. REDESIGNED SELECTED PROJECTS SECTION (Screen 4)
+    -------------------------------------------------- */
+    .projects-section {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      min-height: 100vh;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      padding: 6rem 4rem;
+    }
+
+    .projects-container {
+      width: 100%;
+      max-width: 1350px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .projects-header {
+      max-width: 650px;
+    }
+
+    .projects-headline {
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .projects-subtext {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .projects-editorial-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      width: 100%;
+    }
+
+    .projects-two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      width: 100%;
+    }
+
+    .project-editorial-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 2.5rem;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+      position: relative;
+    }
+
+    .project-editorial-card:hover {
+      border-color: rgba(255, 77, 45, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(255, 77, 45, 0.14);
+    }
+
+    .project-featured {
+      background: linear-gradient(135deg, rgba(255, 77, 45, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
+      border-color: rgba(255, 77, 45, 0.28);
+      padding: 3rem;
+    }
+
+    .card-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      height: 100%;
+      justify-content: space-between;
+    }
+
+    .card-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .project-large-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ff4d2d;
+      letter-spacing: -0.02em;
+      transition: transform 0.3s ease;
+    }
+
+    .project-editorial-card:hover .project-large-num {
+      transform: translateX(4px);
+    }
+
+    .project-meta-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .featured-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #ffffff;
+      background: #ff4d2d;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      letter-spacing: 0.08em;
+    }
+
+    .project-stack-line {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.55);
+      letter-spacing: 0.02em;
+    }
+
+    .card-body-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .project-headline-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .project-featured .project-headline-title {
+      font-size: 2.4rem;
+    }
+
+    .project-sub-label {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ff4d2d;
+    }
+
+    .project-description-text {
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.72);
+      margin-top: 0.4rem;
+    }
+
+    .card-highlights-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .highlights-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .highlight-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .highlight-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .highlight-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: rgba(255, 77, 45, 0.12);
+      border: 1px solid rgba(255, 77, 45, 0.35);
+      padding: 0.22rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    .project-divider-line {
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 0.5rem 0;
+    }
+
+    /* --------------------------------------------------
+       5. EXPERIENCE SECTION (Screen 5)
+    -------------------------------------------------- */
+    .experience-section {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      min-height: 100vh;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      padding: 6rem 4rem;
+    }
+
+    .experience-container {
+      width: 100%;
+      max-width: 1350px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .experience-header {
+      max-width: 650px;
+    }
+
+    .experience-headline {
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .experience-subtext {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .experience-card {
+      background: linear-gradient(135deg, rgba(255, 77, 45, 0.05) 0%, rgba(255, 255, 255, 0.03) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      transition: border-color 0.3s ease;
+    }
+
+    .experience-card:hover {
+      border-color: rgba(255, 77, 45, 0.35);
+    }
+
+    .exp-header-block {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .exp-role-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-company-group {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .exp-company {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ff4d2d;
+    }
+
+    .exp-date {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.55);
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .exp-badge {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+    }
+
+    .exp-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .exp-impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+
+    .exp-impact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .exp-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ff4d2d;
+      letter-spacing: -0.02em;
+    }
+
+    .exp-impact-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.4rem;
+    }
+
+    .exp-impact-desc {
+      font-size: 0.94rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .exp-tech-footer {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .exp-tech-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* --------------------------------------------------
+       6. CONTACT SECTION & FOOTER (Screen 6)
+    -------------------------------------------------- */
+    .contact-section {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      min-height: 100vh;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 6rem 4rem 3rem 4rem;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem;
+      width: 100%;
+      max-width: 1350px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .contact-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .contact-headline {
+      font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .accent-text {
+      color: #ff4d2d;
+    }
+
+    .contact-subtext {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.72);
+      margin-bottom: 2.2rem;
+      max-width: 500px;
+    }
+
+    .btn-contact-cta {
+      padding: 0.95rem 2rem;
+      font-size: 1rem;
+    }
+
+    .contact-details-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      width: 100%;
+    }
+
+    .contact-item-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 16px;
+      padding: 1.6rem 2rem;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .contact-item-card:hover {
+      border-color: rgba(255, 77, 45, 0.4);
+      background: rgba(255, 77, 45, 0.06);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(255, 77, 45, 0.12);
+    }
+
+    .contact-item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .contact-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #ff4d2d;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .contact-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .contact-item-arrow {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .contact-item-card:hover .contact-item-arrow {
+      color: #ff4d2d;
+      transform: translateX(4px);
+    }
+
+    .footer-bottom {
+      width: 100%;
+      max-width: 1350px;
+      margin: 4rem auto 0 auto;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1.2rem;
+    }
+
+    .footer-copy, .footer-role {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Subtle Entrance Animation Classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE LAYOUT BREAKPOINTS */
+    @media (max-width: 1440px) {
+      .hero-section {
+        padding: 2rem 3rem;
+      }
+      .about-section, .skills-section, .projects-section, .experience-section {
+        padding: 5rem 3rem;
+      }
+      .contact-section {
+        padding: 5rem 3rem 2.5rem 3rem;
+      }
+      .about-container, .skills-container, .projects-container, .experience-container, .contact-container {
+        gap: 3rem;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .hero-section {
+        height: auto;
+        min-height: 100vh;
+        padding: 2rem 2.5rem;
+      }
+      .about-section, .skills-section, .projects-section, .experience-section, .contact-section {
+        padding: 4.5rem 2.5rem;
+      }
+      .skills-grid, .projects-two-col, .exp-impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .about-card-wrapper {
+        justify-content: flex-start;
+      }
+      .focus-card {
+        max-width: 100%;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        height: auto;
+        min-height: 100vh;
+        padding: 1.5rem 1.25rem;
+      }
+      .about-section, .skills-section, .projects-section, .experience-section, .contact-section {
+        padding: 3.5rem 1.25rem;
+      }
+      .skills-grid, .projects-two-col, .exp-impact-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+      }
+      .hero-right {
+        text-align: left;
+        max-width: 100%;
+      }
+      .categories-grid, .key-facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+      }
+      .project-featured {
+        padding: 1.8rem;
+      }
+      .project-editorial-card, .skill-card, .experience-card, .focus-card {
+        padding: 1.8rem;
+      }
+      .exp-header-block {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .contact-item-card {
+        padding: 1.2rem 1.4rem;
+      }
+      .contact-value {
+        font-size: 0.95rem;
+        word-break: break-all;
+      }
+      .footer-content {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .categories-grid, .key-facts-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .cta-button-group {
+        flex-direction: column;
+        width: 100%;
+        align-items: stretch;
+      }
+      .btn-primary, .btn-secondary {
+        justify-content: center;
+        width: 100%;
+      }
+      .brand-group {
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .brand-name {
+        font-size: 1.05rem;
+      }
+      .brand-tag {
+        font-size: 0.65rem;
+      }
+      .btn-get-in-touch {
+        padding: 0.35rem 0.4rem 0.35rem 1rem;
+        font-size: 0.82rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Canvas Background Layer -->
+  <canvas id="animation-canvas"></canvas>
+
+  <!-- Scrim Overlay for Typography Contrast -->
+  <div class="scrim-overlay"></div>
+
+  <!-- --------------------------------------------------
+       1. HERO SECTION
+  -------------------------------------------------- -->
+  <header id="home" class="hero-section">
+    
+    <!-- Top Navigation Bar -->
+    <div class="navbar">
+      <div class="brand-group">
+        <span class="brand-name">ALEEZAH JAMIL</span>
+        <span class="brand-tag">AI ENGINEER</span>
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="mailto:aleezahjamil2@gmail.com" class="btn-get-in-touch">
+        <span>Get in touch</span>
+        <span class="arrow-circle">→</span>
+      </a>
+    </div>
+
+    <!-- Center Hero Content -->
+    <div class="hero-content">
+      
+      <!-- Hero Left -->
+      <div class="hero-left">
+        <p class="intro-accent">Hey, I'm</p>
+        <h1 class="hero-headline">Aleezah<br>Jamil</h1>
+        <p class="sub-role">AI Engineer</p>
+        <p class="tech-stack-line">LLM Applications · Machine Learning · Backend Systems</p>
+
+        <div class="cta-button-group">
+          <a href="#projects" class="btn-primary">VIEW PROJECTS →</a>
+          <a href="#contact" class="btn-secondary">CONTACT ME ↗</a>
+        </div>
+      </div>
+
+      <!-- Hero Right -->
+      <div class="hero-right">
+        <h2 class="statement-title">I build intelligent<br>systems that work.</h2>
+        <p class="statement-desc">
+          LLM applications, machine learning solutions,<br>
+          RAG systems, and Python backend systems.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Hero Bottom Row -->
+    <div class="hero-bottom">
+      <div class="divider-line"></div>
+      <div class="categories-grid">
+        <div class="category-item">
+          <span class="cat-num">#01</span>
+          <span class="cat-title">AI & LLM</span>
+          <span class="cat-subtitle">RAG · LLM APIs · MCP</span>
+        </div>
+        <div class="category-item">
+          <span class="cat-num">#02</span>
+          <span class="cat-title">MACHINE LEARNING</span>
+          <span class="cat-subtitle">scikit-learn · NLP</span>
+        </div>
+        <div class="category-item">
+          <span class="cat-num">#03</span>
+          <span class="cat-title">BACKEND SYSTEMS</span>
+          <span class="cat-subtitle">Python · Flask · REST APIs</span>
+        </div>
+        <div class="category-item">
+          <span class="cat-num">#04</span>
+          <span class="cat-title">AI ENGINEERING</span>
+          <span class="cat-subtitle">End-to-End AI Applications</span>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- --------------------------------------------------
+       2. ABOUT ME SECTION
+  -------------------------------------------------- -->
+  <section id="about" class="about-section">
+    <div class="about-container">
+      
+      <!-- Left Column: Main Description & Facts -->
+      <div class="about-main-content reveal">
+        <span class="section-tag">ABOUT ME</span>
+        <h2 class="about-headline">
+          Building intelligent systems<br>
+          from ideas to working products.
+        </h2>
+        
+        <div class="about-paragraphs">
+          <p class="para-primary">
+            I'm a BS Computer Science (Artificial Intelligence) student and AI Engineering Intern focused on building practical AI systems. I work across LLM applications, Retrieval-Augmented Generation, machine learning, and Python backend development — turning ideas into functional, production-style applications.
+          </p>
+          <p class="para-secondary">
+            My experience includes building AI assistants, RAG pipelines, multi-agent applications, machine-learning solutions, and Flask-based systems with real-world workflows and data.
+          </p>
+        </div>
+
+        <!-- Key Facts Row -->
+        <div class="key-facts-grid">
+          <div class="fact-card">
+            <span class="fact-val">3.85 / 4.0</span>
+            <span class="fact-lbl">CGPA</span>
+          </div>
+          <div class="fact-card">
+            <span class="fact-val">100+</span>
+            <span class="fact-lbl">Leads Processed</span>
+          </div>
+          <div class="fact-card">
+            <span class="fact-val">33</span>
+            <span class="fact-lbl">Business Categories</span>
+          </div>
+          <div class="fact-card">
+            <span class="fact-val">2026</span>
+            <span class="fact-lbl">AI Engineering Internship</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: AI Engineering Focus Card -->
+      <div class="about-card-wrapper reveal">
+        <div class="focus-card">
+          <h3 class="focus-card-title">AI ENGINEERING FOCUS</h3>
+          <div class="focus-list">
+            <div class="focus-item">
+              <span class="focus-num">01</span>
+              <div class="focus-details">
+                <span class="focus-name">LLM APPLICATIONS</span>
+                <span class="focus-sub">RAG · LLM APIs · MCP</span>
+              </div>
+            </div>
+            <div class="focus-item">
+              <span class="focus-num">02</span>
+              <div class="focus-details">
+                <span class="focus-name">MACHINE LEARNING</span>
+                <span class="focus-sub">scikit-learn · Classification · NLP</span>
+              </div>
+            </div>
+            <div class="focus-item">
+              <span class="focus-num">03</span>
+              <div class="focus-details">
+                <span class="focus-name">BACKEND SYSTEMS</span>
+                <span class="focus-sub">Python · Flask · REST APIs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------
+       3. SKILLS & TECHNOLOGIES SECTION
+  -------------------------------------------------- -->
+  <section id="skills" class="skills-section">
+    <div class="skills-container">
+      
+      <!-- Section Header -->
+      <div class="skills-header reveal">
+        <span class="section-tag">WHAT I WORK WITH</span>
+        <h2 class="skills-headline">Skills & Technologies</h2>
+        <p class="skills-subtext">
+          I build AI-powered applications across LLMs, machine learning, and backend systems — combining models, data, APIs, and application logic into working products.
+        </p>
+      </div>
+
+      <!-- 3 Main Skill Categories -->
+      <div class="skills-grid">
+        
+        <!-- 01 — AI & LLM ENGINEERING -->
+        <div class="skill-card reveal">
+          <div class="card-top">
+            <span class="card-num">01</span>
+            <h3 class="card-title">AI & LLM Engineering</h3>
+            <p class="card-desc">
+              Building practical applications around large language models, retrieval systems, and AI workflows.
+            </p>
+          </div>
+          <div class="pills-wrapper">
+            <span class="pill pill-highlight">RAG</span>
+            <span class="pill pill-highlight">ChromaDB</span>
+            <span class="pill pill-highlight">Groq</span>
+            <span class="pill pill-highlight">MCP</span>
+            <span class="pill">FastMCP</span>
+            <span class="pill">LLM API Integration</span>
+            <span class="pill">Multi-Agent Applications</span>
+            <span class="pill">Prompt Engineering</span>
+          </div>
+        </div>
+
+        <!-- 02 — MACHINE LEARNING -->
+        <div class="skill-card reveal">
+          <div class="card-top">
+            <span class="card-num">02</span>
+            <h3 class="card-title">Machine Learning</h3>
+            <p class="card-desc">
+              Developing applied machine-learning solutions for classification and prediction tasks.
+            </p>
+          </div>
+          <div class="pills-wrapper">
+            <span class="pill">Python</span>
+            <span class="pill">scikit-learn</span>
+            <span class="pill">Logistic Regression</span>
+            <span class="pill">Random Forest</span>
+            <span class="pill">TF-IDF</span>
+            <span class="pill">Classification</span>
+            <span class="pill">Model Evaluation</span>
+          </div>
+        </div>
+
+        <!-- 03 — BACKEND & APPLICATION DEVELOPMENT -->
+        <div class="skill-card reveal">
+          <div class="card-top">
+            <span class="card-num">03</span>
+            <h3 class="card-title">Backend & Application Development</h3>
+            <p class="card-desc">
+              Building Python-based applications, APIs, data workflows, and role-based systems.
+            </p>
+          </div>
+          <div class="pills-wrapper">
+            <span class="pill">Python</span>
+            <span class="pill">Flask</span>
+            <span class="pill">SQLite</span>
+            <span class="pill">REST APIs</span>
+            <span class="pill">Jinja2</span>
+            <span class="pill">HTML/CSS</span>
+            <span class="pill">Tailwind CSS</span>
+            <span class="pill">Role-Based Access Control</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tools & Platforms Block -->
+      <div class="tools-wrapper reveal">
+        <h4 class="tools-title">Tools & Platforms</h4>
+        <div class="pills-wrapper tools-pills">
+          <span class="pill">Git</span>
+          <span class="pill">GitHub</span>
+          <span class="pill">PythonAnywhere</span>
+          <span class="pill">Streamlit</span>
+          <span class="pill">GitHub Copilot</span>
+          <span class="pill">Claude Code</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------
+       4. REDESIGNED SELECTED PROJECTS SECTION
+  -------------------------------------------------- -->
+  <section id="projects" class="projects-section">
+    <div class="projects-container">
+      
+      <!-- Section Header -->
+      <div class="projects-header reveal">
+        <span class="section-tag">SELECTED WORK</span>
+        <h2 class="projects-headline">Selected Projects</h2>
+        <p class="projects-subtext">
+          A selection of AI, machine learning, and backend systems I’ve built from concept to implementation.
+        </p>
+      </div>
+
+      <!-- Projects Editorial Showcase -->
+      <div class="projects-editorial-list">
+        
+        <!-- PROJECT 01 — CAREFLOW (FEATURED EDITORIAL SHOWCASE) -->
+        <article class="project-editorial-card project-featured reveal">
+          <div class="card-inner">
+            <div class="card-header-row">
+              <span class="project-large-num">01</span>
+              <div class="project-meta-right">
+                <span class="featured-tag">FEATURED PROJECT</span>
+                <span class="project-stack-line">Flask · SQLite · Groq LLM</span>
+              </div>
+            </div>
+
+            <div class="card-body-content">
+              <div class="project-title-group">
+                <h3 class="project-headline-title">CareFlow</h3>
+                <p class="project-sub-label">AI Medical Intake Platform</p>
+              </div>
+              <p class="project-description-text">
+                A role-based medical intake platform designed around AI-assisted patient workflows. Includes patient, doctor, and admin roles, AI-generated visit summaries, appointment booking, document uploads, audit trails, and administrative account governance.
+              </p>
+            </div>
+
+            <div class="card-highlights-row">
+              <div class="highlights-group">
+                <span class="highlight-label">KEY HIGHLIGHTS</span>
+                <div class="highlight-pills">
+                  <span class="highlight-badge">AI-assisted workflow</span>
+                  <span class="highlight-badge">RBAC</span>
+                  <span class="highlight-badge">Audit trails</span>
+                </div>
+              </div>
+              <div class="pills-wrapper">
+                <span class="pill pill-highlight">Flask</span>
+                <span class="pill pill-highlight">SQLite</span>
+                <span class="pill pill-highlight">Groq LLM</span>
+                <span class="pill">AI Workflow</span>
+                <span class="pill">RBAC</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="project-divider-line"></div>
+
+        <!-- 2-COLUMN GRID (PROJECT 02 & 03) -->
+        <div class="projects-two-col">
+          
+          <!-- PROJECT 02 (Lead Gen Platform) -->
+          <article class="project-editorial-card reveal">
+            <div class="card-inner">
+              <div class="card-header-row">
+                <span class="project-large-num">02</span>
+                <span class="project-stack-line">Python · Flask · Automation · APIs</span>
+              </div>
+
+              <div class="card-body-content">
+                <div class="project-title-group">
+                  <h3 class="project-headline-title">B2B/B2C Lead Generation Platform</h3>
+                  <p class="project-sub-label">Marketing Automation & Lead Scraping</p>
+                </div>
+                <p class="project-description-text">
+                  A lead-generation and marketing automation platform capable of processing 100+ Google leads across 33 business categories with configurable filters, campaign management, email templates, automated follow-ups, CSV export, and WhatsApp marketing alerts.
+                </p>
+              </div>
+
+              <div class="card-highlights-row">
+                <div class="highlights-group">
+                  <span class="highlight-label">KEY HIGHLIGHTS</span>
+                  <div class="highlight-pills">
+                    <span class="highlight-badge">100+ leads</span>
+                    <span class="highlight-badge">33 categories</span>
+                    <span class="highlight-badge">Marketing automation</span>
+                  </div>
+                </div>
+                <div class="pills-wrapper">
+                  <span class="pill">Python</span>
+                  <span class="pill">Flask</span>
+                  <span class="pill">Automation</span>
+                  <span class="pill">Lead Generation</span>
+                  <span class="pill">CSV</span>
+                  <span class="pill">APIs</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 03 (RAG Knowledge Assistant) -->
+          <article class="project-editorial-card reveal">
+            <div class="card-inner">
+              <div class="card-header-row">
+                <span class="project-large-num">03</span>
+                <span class="project-stack-line">RAG · ChromaDB · MCP · Groq</span>
+              </div>
+
+              <div class="card-body-content">
+                <div class="project-title-group">
+                  <h3 class="project-headline-title">RAG Knowledge Assistant</h3>
+                  <p class="project-sub-label">Vector Search & LLM Inference</p>
+                </div>
+                <p class="project-description-text">
+                  A retrieval-augmented knowledge assistant that combines document retrieval with LLM generation to provide context-aware responses with fast response times.
+                </p>
+              </div>
+
+              <div class="card-highlights-row">
+                <div class="highlights-group">
+                  <span class="highlight-label">KEY HIGHLIGHTS</span>
+                  <div class="highlight-pills">
+                    <span class="highlight-badge">Retrieval pipeline</span>
+                    <span class="highlight-badge">Vector database</span>
+                    <span class="highlight-badge">LLM integration</span>
+                  </div>
+                </div>
+                <div class="pills-wrapper">
+                  <span class="pill pill-highlight">RAG</span>
+                  <span class="pill pill-highlight">ChromaDB</span>
+                  <span class="pill pill-highlight">MCP</span>
+                  <span class="pill">FastMCP</span>
+                  <span class="pill">Groq</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="project-divider-line"></div>
+
+        <!-- 2-COLUMN GRID (PROJECT 04 & 05) -->
+        <div class="projects-two-col">
+          
+          <!-- PROJECT 04 (Smart Expense Categorizer) -->
+          <article class="project-editorial-card reveal">
+            <div class="card-inner">
+              <div class="card-header-row">
+                <span class="project-large-num">04</span>
+                <span class="project-stack-line">Python · scikit-learn · TF-IDF · Logistic Regression</span>
+              </div>
+
+              <div class="card-body-content">
+                <div class="project-title-group">
+                  <h3 class="project-headline-title">Smart Expense Categorizer</h3>
+                  <p class="project-sub-label">ML Transaction Classifier</p>
+                </div>
+                <p class="project-description-text">
+                  A machine-learning classification system that automatically categorizes expenses from CSV data using TF-IDF feature extraction and Logistic Regression. The current model reaches approximately 90% accuracy on a custom-generated training dataset.
+                </p>
+              </div>
+
+              <div class="card-highlights-row">
+                <div class="highlights-group">
+                  <span class="highlight-label">KEY HIGHLIGHTS</span>
+                  <div class="highlight-pills">
+                    <span class="highlight-badge">~90% accuracy</span>
+                    <span class="highlight-badge">NLP features</span>
+                    <span class="highlight-badge">Classification</span>
+                  </div>
+                </div>
+                <div class="pills-wrapper">
+                  <span class="pill">Python</span>
+                  <span class="pill">scikit-learn</span>
+                  <span class="pill">TF-IDF</span>
+                  <span class="pill">Logistic Regression</span>
+                  <span class="pill">Classification</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 05 (AI Medical Assistant) -->
+          <article class="project-editorial-card reveal">
+            <div class="card-inner">
+              <div class="card-header-row">
+                <span class="project-large-num">05</span>
+                <span class="project-stack-line">Python · scikit-learn · Random Forest</span>
+              </div>
+
+              <div class="card-body-content">
+                <div class="project-title-group">
+                  <h3 class="project-headline-title">AI Medical Assistant</h3>
+                  <p class="project-sub-label">Disease Prediction & Triage System</p>
+                </div>
+                <p class="project-description-text">
+                  A symptom-based machine-learning application that uses structured demographic, vital, and symptom information to generate disease predictions and provide corresponding guidance and urgent-care indicators.
+                </p>
+              </div>
+
+              <div class="card-highlights-row">
+                <div class="highlights-group">
+                  <span class="highlight-label">KEY HIGHLIGHTS</span>
+                  <div class="highlight-pills">
+                    <span class="highlight-badge">Random Forest</span>
+                    <span class="highlight-badge">Classification</span>
+                    <span class="highlight-badge">Structured data</span>
+                  </div>
+                </div>
+                <div class="pills-wrapper">
+                  <span class="pill">Python</span>
+                  <span class="pill">scikit-learn</span>
+                  <span class="pill">Random Forest</span>
+                  <span class="pill">Classification</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="project-divider-line"></div>
+
+        <!-- PROJECT 06 (Weather Application) -->
+        <article class="project-editorial-card reveal">
+          <div class="card-inner">
+            <div class="card-header-row">
+              <span class="project-large-num">06</span>
+              <span class="project-stack-line">Flask · OpenWeatherMap API · Jinja2 · Tailwind CSS</span>
+            </div>
+
+            <div class="card-body-content">
+              <div class="project-title-group">
+                <h3 class="project-headline-title">Weather Application</h3>
+                <p class="project-sub-label">API-Driven Forecast Service</p>
+              </div>
+              <p class="project-description-text">
+                A full-stack weather application featuring GPS-based location detection, API integration, session-based settings, and a responsive glass-card interface.
+              </p>
+            </div>
+
+            <div class="card-highlights-row">
+              <div class="highlights-group">
+                <span class="highlight-label">KEY HIGHLIGHTS</span>
+                <div class="highlight-pills">
+                  <span class="highlight-badge">REST API</span>
+                  <span class="highlight-badge">Flask</span>
+                  <span class="highlight-badge">GPS location</span>
+                </div>
+              </div>
+              <div class="pills-wrapper">
+                <span class="pill">Flask</span>
+                <span class="pill">OpenWeatherMap</span>
+                <span class="pill">Jinja2</span>
+                <span class="pill">Tailwind CSS</span>
+                <span class="pill">REST API</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------
+       5. EXPERIENCE SECTION
+  -------------------------------------------------- -->
+  <section id="experience" class="experience-section">
+    <div class="experience-container">
+      
+      <!-- Section Header -->
+      <div class="experience-header reveal">
+        <span class="section-tag">EXPERIENCE</span>
+        <h2 class="experience-headline">Experience</h2>
+        <p class="experience-subtext">
+          Hands-on experience building AI-powered applications, automation systems, and production-style backend solutions.
+        </p>
+      </div>
+
+      <!-- Main Experience Card -->
+      <div class="experience-card reveal">
+        
+        <!-- Header Row -->
+        <div class="exp-header-block">
+          <div class="exp-role-group">
+            <h3 class="exp-role-title">AI Engineering Intern</h3>
+            <div class="exp-company-group">
+              <span class="exp-company">Reys Solutions</span>
+              <span class="exp-date">May 2026 — Aug 2026</span>
+            </div>
+          </div>
+          <span class="exp-badge">AI Engineering · LLM Applications · Backend Systems</span>
+        </div>
+
+        <div class="exp-divider"></div>
+
+        <!-- 3 Impact Items Timeline Grid -->
+        <div class="exp-impact-grid">
+          
+          <div class="exp-impact-item">
+            <span class="exp-num">01</span>
+            <div class="exp-impact-content">
+              <h4 class="exp-impact-title">AI & LLM Applications</h4>
+              <p class="exp-impact-desc">
+                Developed RAG-based and multi-agent AI applications, including a knowledge assistant, CV rewriter, and email personalizer using Groq, ChromaDB, MCP/FastMCP, and Flask.
+              </p>
+            </div>
+          </div>
+
+          <div class="exp-impact-item">
+            <span class="exp-num">02</span>
+            <div class="exp-impact-content">
+              <h4 class="exp-impact-title">Lead Generation & Automation</h4>
+              <p class="exp-impact-desc">
+                Built a B2B/B2C lead-generation platform capable of processing 100+ Google leads across 33 business categories, with configurable filters and marketing automation workflows.
+              </p>
+            </div>
+          </div>
+
+          <div class="exp-impact-item">
+            <span class="exp-num">03</span>
+            <div class="exp-impact-content">
+              <h4 class="exp-impact-title">Campaign Systems</h4>
+              <p class="exp-impact-desc">
+                Implemented HubSpot-style campaign functionality including email templates, automated follow-ups, CSV export, and WhatsApp marketing alerts.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="exp-divider"></div>
+
+        <!-- Tech Stack Footer -->
+        <div class="exp-tech-footer">
+          <span class="exp-tech-label">TECHNOLOGY STACK</span>
+          <div class="pills-wrapper">
+            <span class="pill pill-highlight">Python</span>
+            <span class="pill pill-highlight">Flask</span>
+            <span class="pill pill-highlight">Groq</span>
+            <span class="pill pill-highlight">RAG</span>
+            <span class="pill pill-highlight">ChromaDB</span>
+            <span class="pill">MCP</span>
+            <span class="pill">FastMCP</span>
+            <span class="pill">LLM APIs</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------
+       6. CONTACT SECTION & FOOTER (Screen 6)
+  -------------------------------------------------- -->
+  <section id="contact" class="contact-section">
+    <div class="contact-container">
+      
+      <!-- Left Column: Editorial Heading -->
+      <div class="contact-left reveal">
+        <span class="section-tag">CONTACT</span>
+        <h2 class="contact-headline">
+          LET'S BUILD SOMETHING<br>
+          <span class="accent-text">INTELLIGENT.</span>
+        </h2>
+        <p class="contact-subtext">
+          Have an AI application, automation workflow, or backend system in mind? Let's talk.
+        </p>
+      </div>
+
+      <!-- Right Column: Contact Details Cards/Rows -->
+      <div class="contact-right reveal">
+        <div class="contact-details-list">
+          
+          <!-- EMAIL -->
+          <a href="mailto:aleezahjamil2@gmail.com" class="contact-item-card">
+            <div class="contact-item-info">
+              <span class="contact-label">EMAIL</span>
+              <span class="contact-value">aleezahjamil2@gmail.com</span>
+            </div>
+            <span class="contact-item-arrow">→</span>
+          </a>
+
+          <!-- LINKEDIN -->
+          <a href="https://linkedin.com/in/aleezah-jamil" target="_blank" rel="noopener" class="contact-item-card">
+            <div class="contact-item-info">
+              <span class="contact-label">LINKEDIN</span>
+              <span class="contact-value">linkedin.com/in/aleezah-jamil</span>
+            </div>
+            <span class="contact-item-arrow">↗</span>
+          </a>
+
+          <!-- GITHUB -->
+          <a href="https://github.com/AleezahJamil" target="_blank" rel="noopener" class="contact-item-card">
+            <div class="contact-item-info">
+              <span class="contact-label">GITHUB</span>
+              <span class="contact-value">github.com/AleezahJamil</span>
+            </div>
+            <span class="contact-item-arrow">↗</span>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Minimal Footer -->
+    <footer class="footer-bottom">
+      <div class="divider-line"></div>
+      <div class="footer-content">
+        <span class="footer-copy">© 2026 ALEEZAH JAMIL · ALL RIGHTS RESERVED</span>
+        <span class="footer-role">AI ENGINEER PORTFOLIO</span>
+      </div>
+    </footer>
+  </section>
+
+  <!-- --------------------------------------------------
+       CANVAS FRAME SEQUENCE ENGINE
+  -------------------------------------------------- -->
+  <script>
+    const frameCount = 115; // 115 VLC PNG frames
+    const nativeWidth = 1280;
+    const nativeHeight = 720;
+
+    const canvas = document.getElementById('animation-canvas');
+    const ctx = canvas.getContext('2d', { alpha: false });
+
+    const images = new Array(frameCount);
+    let currentFrame = 0;
+    let targetFrame = 0;
+    let lastRenderedFrame = -1;
+
+    // 5-digit VLC PNG path: frames/scene00001.png
+    function getFramePath(index) {
+      const frameNum = String(index + 1).padStart(5, '0');
+      return `frames/scene${frameNum}.png`;
+    }
+
+    // Canvas resizing fixed at 100vw x 100vh
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      
+      lastRenderedFrame = -1;
+      drawFrame(Math.round(currentFrame));
+    }
+
+    // Preload PNG frames with console error tracking
+    for (let i = 0; i < frameCount; i++) {
+      const img = new Image();
+      const src = getFramePath(i);
+
+      img.onload = () => {
+        if (i === 0) {
+          drawFrame(0);
+        } else if (Math.round(currentFrame) === i) {
+          drawFrame(i);
+        }
+      };
+
+      img.onerror = (err) => {
+        console.error(`[Frame Loader Error] Missing or failed frame #${i + 1} at: ${src}`, err);
+      };
+
+      img.src = src;
+      images[i] = img;
+    }
+
+    function drawFrame(index) {
+      const clampedIndex = Math.min(frameCount - 1, Math.max(0, index));
+      const img = images[clampedIndex];
+
+      if (!img || !img.complete || img.naturalWidth === 0) {
+        // Fallback to nearest loaded frame
+        let fallbackIndex = clampedIndex;
+        while (fallbackIndex >= 0 && (!images[fallbackIndex] || !images[fallbackIndex].complete)) {
+          fallbackIndex--;
+        }
+        if (fallbackIndex < 0) {
+          fallbackIndex = clampedIndex;
+          while (fallbackIndex < frameCount && (!images[fallbackIndex] || !images[fallbackIndex].complete)) {
+            fallbackIndex++;
+          }
+        }
+        if (fallbackIndex >= 0 && fallbackIndex < frameCount && images[fallbackIndex] && images[fallbackIndex].complete) {
+          return renderImageToCanvas(images[fallbackIndex]);
+        }
+        return false;
+      }
+
+      return renderImageToCanvas(img);
+    }
+
+    // Fullscreen cover rendering: fills 100% viewport, preserves 16:9 ratio without black bars
+    function renderImageToCanvas(img) {
+      const cw = canvas.width;
+      const ch = canvas.height;
+
+      if (cw === 0 || ch === 0) return false;
+
+      const imgW = img.naturalWidth || nativeWidth;
+      const imgH = img.naturalHeight || nativeHeight;
+      const imgAspect = imgW / imgH;
+      const canvasAspect = cw / ch;
+
+      let drawWidth, drawHeight;
+
+      // Cover math: scale image so it covers 100% of canvas in both dimensions
+      if (canvasAspect > imgAspect) {
+        drawWidth = cw;
+        drawHeight = cw / imgAspect;
+      } else {
+        drawHeight = ch;
+        drawWidth = ch * imgAspect;
+      }
+
+      // Center horizontally; top-align when drawHeight > ch to ensure head & hair remain 100% visible
+      const x = (cw - drawWidth) / 2;
+      let y = 0;
+      if (drawHeight > ch) {
+        y = 0; // Top-align image to preserve complete head and hair visibility on desktop/wide screens
+      } else {
+        y = (ch - drawHeight) / 2;
+      }
+
+      ctx.fillStyle = '#0a0a0c';
+      ctx.fillRect(0, 0, cw, ch);
+      
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+
+      ctx.drawImage(img, x, y, drawWidth, drawHeight);
+      return true;
+    }
+
+    // Scroll calculation across entire page length
+    function updateScrollTarget() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      const maxScroll = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
+      
+      if (maxScroll > 0) {
+        const scrollFraction = Math.min(1, Math.max(0, scrollTop / maxScroll));
+        targetFrame = scrollFraction * (frameCount - 1);
+      }
+    }
+
+    window.addEventListener('scroll', updateScrollTarget, { passive: true });
+    window.addEventListener('resize', resizeCanvas);
+
+    // Smooth lerp loop
+    function renderLoop() {
+      const ease = 0.12;
+      currentFrame += (targetFrame - currentFrame) * ease;
+
+      const roundedIndex = Math.min(frameCount - 1, Math.max(0, Math.round(currentFrame)));
+
+      if (roundedIndex !== lastRenderedFrame) {
+        const success = drawFrame(roundedIndex);
+        if (success) {
+          lastRenderedFrame = roundedIndex;
+        }
+      }
+
+      requestAnimationFrame(renderLoop);
+    }
+
+    // Scroll reveal observer for subtle entrance animations
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Initial setup
+    resizeCanvas();
+    updateScrollTarget();
+    requestAnimationFrame(renderLoop);
+  </script>
+</body>
+</html>
