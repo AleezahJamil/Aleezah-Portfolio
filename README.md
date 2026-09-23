@@ -1,55 +1,95 @@
-# Aleezah Jamil — AI Engineer Portfolio
+# Aleezah Jamil — AI Engineer
 
-A premium, cinematic portfolio website for **Aleezah Jamil** featuring an interactive 115-frame scroll-driven portrait animation, dark burgundy editorial aesthetics, and detailed showcases for AI, Machine Learning, and Backend Engineering projects.
+AI Engineer specializing in **LLM applications, AI-powered systems, and backend development**.
 
----
-
-## 🚀 Deployment & Hosting
-
-- **Entry File:** `index.html`
-- **Build Command:** *None required (Static HTML/CSS/JS)*
-- **Output Directory:** `/` (Root directory)
-
-### Deploying to GitHub Pages
-1. Push this repository to GitHub.
-2. Go to **Settings** > **Pages** in your GitHub repository.
-3. Under **Build and deployment**, set **Source** to `Deploy from a branch`.
-4. Select the `main` branch and `/ (root)` folder.
-5. Click **Save**. Your site will be live at `https://<your-username>.github.io/<repository-name>/`.
+This repository contains my personal portfolio website, showcasing selected projects, technical skills, and experience building practical AI solutions.
 
 ---
 
-## 💻 Running Locally
+## About
 
-Since the site loads 115 PNG animation frames dynamically, serve the root directory with any standard HTTP web server:
+I’m an AI Engineer focused on designing and developing intelligent applications that combine modern AI technologies with reliable backend systems.
 
-### Option 1: Python HTTP Server (Recommended)
-```bash
-python -m http.server 8000
-```
-Then open `http://localhost:8000` in your web browser.
+My areas of interest include:
 
-### Option 2: Node.js `npx serve`
-```bash
-npx serve .
-```
-
-### Option 3: VS Code Live Server
-Open `index.html` in VS Code and click **Go Live** via the Live Server extension.
+- Large Language Model (LLM) Applications
+- Retrieval-Augmented Generation (RAG)
+- AI/ML Systems
+- Backend Development
+- AI-powered Automation
+- API Integration
 
 ---
 
-## 📁 Project Structure
+## Selected Projects
+
+### CareFlow
+An AI-powered healthcare application focused on improving workflows through intelligent automation and assistance.
+
+### B2B/B2C Lead Generation Platform
+A lead generation platform supporting both B2B and B2C workflows, featuring an end-to-end application flow and AI-driven functionality.
+
+### RAG Knowledge Assistant
+A Retrieval-Augmented Generation application designed to retrieve relevant information and provide context-aware responses from a knowledge base.
+
+### Smart Expense Categorizer
+An AI-powered application that automatically categorizes and organizes financial expenses.
+
+### AI Medical Assistant
+An AI application designed to provide users with accessible medical information and intelligent assistance.
+
+### Weather App
+A web application providing weather information through a simple and responsive interface.
+
+---
+
+## Technical Skills
+
+**AI & Machine Learning**
+- Large Language Models
+- Retrieval-Augmented Generation (RAG)
+- AI Application Development
+- Machine Learning
+
+**Development**
+- Python
+- JavaScript
+- Backend Development
+- REST APIs
+- API Integration
+
+---
+
+## Portfolio Screenshots
+
+### Hero
+![Portfolio Hero](Screenshots/Hero.png)
+
+### About
+![About Section](Screenshots/about.png)
+
+### Skills
+![Skills Section](Screenshots/skills.png)
+
+### Contact
+![Contact Section](Screenshots/Contact.png)
+
+---
+
+## Project Structure
 
 ```text
-├── index.html          # Main entry file containing structure, styling, & scroll engine
-├── frames/             # 115 scroll animation PNG frames (scene00001.png - scene00115.png)
-├── .gitignore          # Git ignore rules for OS/IDE temp files
-└── README.md           # Project documentation & deployment guide
-```
-
----
-
-## 🛡️ License
-
-© 2026 Aleezah Jamil. All rights reserved.
+Aleezah-Portfolio/
+├── index.html
+├── frames/
+│   ├── scene00001.png
+│   ├── scene00002.png
+│   ├── ...
+│   └── scene00115.png
+├── Screenshots/
+│   ├── Hero.png
+│   ├── about.png
+│   ├── skills.png
+│   └── Contact.png
+├── .gitignore
+└── README.md
